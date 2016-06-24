@@ -1,0 +1,67 @@
+[
+{
+	ID: "Honeywell Switch Light",
+	displayName: "普通开关型灯",
+	standard: "Light.Simple",
+	identifiers: {
+		"ipAddress":"string",
+		"id":"int"
+	},
+	spec: {
+		"canDoQuery":"no",
+		"canDoToggle": "no"
+	},
+	extParams: {
+		deviceName: "lig"
+	}
+},{
+	ID: "Honeywell HBus Light",
+	displayName: "普通有线可调光灯",
+	standard: "Dimmer.Simple",
+	identifiers: {
+		"ipAddress":"string",
+		"area":"int",
+		"loop":"int"
+	},
+	spec: {
+		"canDoQuery":"no",
+		"canDoToggle": "no"
+	},
+	extParams: {
+		deviceName: "hbuslig"
+	}
+},{
+	ID: "Honeywell HDW 2000 HVAC",
+	displayName: "普通家用空调",
+	standard: "HVAC.Normal",
+	identifiers: {
+		"ipAddress":"string",
+		"id":"int"
+	},
+	spec: {
+		validRunningModes: ["关机","风", "除湿", "制冷","制热","自动"],
+		roomTemperatureRange: [16.0, 35.0],
+		temperatureSettingRange:[16.0, 35.0],
+		validFanModes: ["自动","高速","舒适","柔和"],
+		humidityFunction: "no",
+		hasWingDirection: "no"
+	},
+	extParams : {
+		deviceName: "ac",
+		runningModes : {
+			"关机":0,
+			"制冷":1003,
+			"制热":1002,
+			"自动":1000,
+			"风":  1001,
+			"除湿":1004
+		},
+		fanModes : {
+			"自动": 0,
+			"高速": 3,
+			"舒适": 2,
+			"柔和": 1
+		}
+	}
+}
+]

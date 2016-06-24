@@ -1,0 +1,27 @@
+{
+  "Light-1": {
+    "deviceID": "Light-1",
+    "profileID": "Honeywell Switch Light",
+    "identity": {
+      "id": 1.0,
+      "ipAddress": "192.168.2.103"
+    }
+  },
+  "Light-2": {
+    "deviceID": "Light-2",
+    "profileID": "Honeywell HBus Light",
+    "identity": {
+      "area": 1.0,
+      "loop": 1.0,
+      "ipAddress": "192.168.2.103"
+    }
+  },
+  "AC-1": {
+    "deviceID": "AC-1",
+    "profileID": "Honeywell HDW 2000 HVAC",
+    "identity": {
+      "id": 1,
+      "ipAddress": "192.168.2.103"
+    }
+  }
+}

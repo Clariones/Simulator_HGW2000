@@ -1,0 +1,9 @@
+{
+	deviceDBFile:"DB/devices.json",
+	profileDBFile:"DB/profiles.json",
+	homeFolder:"testData",
+	HtmlTemplateFolder: "html",
+	hostPort:10099,
+	webConsolePort: 1081,
+	imageFolder:"images"
+}

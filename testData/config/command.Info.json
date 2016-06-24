@@ -1,0 +1,20 @@
+{
+	"hbuslig" : {
+		"cfg" : {
+			tokens : ["area", "loop", "action", "onOff", "dimmer", "err"],
+			deviceKeys : ["area", "loop"],
+			operation : {
+				"state": "setOnOff_onOff",
+				"dimmer" : "getFrom_dimmer"
+			}
+		},
+		"req" : {
+			tokens : ["area", "loop", "action", "onOff", "dimmer", "err"],
+			deviceKeys : ["area", "loop"],
+			operation : {
+				"state": "getOnOff_onOff",
+				"dimmer" : "setTo_dimmer"
+			}
+		}
+	}
+}
