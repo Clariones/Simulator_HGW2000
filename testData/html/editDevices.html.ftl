@@ -1,5 +1,5 @@
 <div style="border: 1px solid gray;">
-<form action="#" method="post">
+<form action="/updateDevice" method="get">
 	<input type="hidden" name="device_org_id" value="${deviceId}"/>
 	<label style="width: 200px;display:inline-block; text-align:right;">设备类型</label> ${device.profileID}
 	<br/>
@@ -11,7 +11,8 @@
 		<input name="identifier_${identifier}" size="40" value="${device.identity[identifier]}"/>
 		<br/>
 	</#list>
-	<input type="submit" value="提交"/>
-	<input type="reset" value="取消"/>
+	<button name="edit_action" type="submit" value="save">保存</button>
+	<button name="edit_action" type="submit" value="delete">删除</button>
+	<button type="reset" value="cancel">取消</button>
 </form>
 </div>

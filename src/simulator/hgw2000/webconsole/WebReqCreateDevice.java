@@ -9,6 +9,7 @@ import java.util.Map;
 import org.skynet.bgby.driverutils.DriverUtils;
 
 import fi.iki.elonen.NanoHTTPD.Response;
+import fi.iki.elonen.NanoHTTPD.Response.Status;
 import simulator.hgw2000.device.DeviceInfo;
 import simulator.hgw2000.gateway.DeviceManager;
 import simulator.hgw2000.gateway.Gateway;
@@ -26,14 +27,22 @@ public class WebReqCreateDevice extends WebReqShowConsole {
 			@Override
 			public Response handleRequest(WebRequest request) throws IOException {
 				createDevice(request);
-				return super.handleRequest(request);
+				Response resp= HttpSevice.newFixedLengthResponse(Status.REDIRECT, HttpSevice.MIME_HTML, null);
+				resp.addHeader("location", "/management");
+				return resp;
 			}
 		});
 	}
 	
 	protected void createDevice(WebRequest request) {
-		DeviceInfo device = new DeviceInfo();
 		Map<String, String> inParams = request.getParams();
+		DeviceInfo device = createNewDevice(inParams);
+		gateway.getDeviceManager().addDevice(device);
+	}
+
+	protected DeviceInfo createNewDevice(Map<String, String> inParams) {
+		DeviceInfo device = new DeviceInfo();
+		
 		String profile = inParams.get("identifier_device_profile");
 		device.setProfileID(profile);
 		
@@ -43,7 +52,7 @@ public class WebReqCreateDevice extends WebReqShowConsole {
 		if (name != null){
 			device.setDeviceID(name);
 		}
-		gateway.getDeviceManager().addDevice(device);
+		return device;
 	}
 
 	private Map<String, Object> getIdentity(Map<String, String> inParams) {

@@ -42,10 +42,22 @@ function changeHvacTemperature(input, type, devId){
 			</td>
 			</tr><tr>
 			<td width="200px">
-				<#include "deviceStatus.html.ftl"/>
+			
+				<#if device.status?has_content>
+					<div   style="font-weight: bold;">
+					<#list device.status?keys?sort as statusKey>
+						<label style="width: 100px; display:inline-bloack;">${statusKey}</label>:
+						${device.status[statusKey]!}
+					<br/>
+					</#list>
+					</div>
+				</#if>
+				<hr/>
+				<#include "deviceIdentify.html.ftl"/>
+				
 			</td>
 			<td width="200px">
-				<#include "deviceIdentify.html.ftl"/>
+				<#include "deviceStatus.html.ftl"/>
 			</td>
 			<td>
 				<#include "deviceLogs.html.ftl"/>

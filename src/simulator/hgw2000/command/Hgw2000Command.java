@@ -48,6 +48,9 @@ public class Hgw2000Command {
 	public void setParams(Map<String, String> params) {
 		this.params = params;
 	}
+	public void setErrorCode(int code) {
+		params.put("err", String.valueOf(code));
+	}
 	
 	
 

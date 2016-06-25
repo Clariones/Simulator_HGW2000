@@ -12,63 +12,78 @@ import simulator.hgw2000.command.UdpService;
 import simulator.hgw2000.webconsole.HttpSevice;
 
 public class Gateway {
+	protected GatewayConfig configuration;
+	
+	protected ControlLogger controlLogger;
+
+	protected UdpService deviceCommandService;
+
+	protected DeviceManager deviceManager;
+
+	protected boolean hasChanged = false;
+
+	protected Logger logger = Logger.getLogger(Gateway.class.getName());
+
+	protected ProfileManager profileManager;
+
+	protected HttpSevice webConsoleService;
+
+	public void controlLog(String from, String deviceId, String message){
+		controlLogger.log(from, deviceId, message);
+	}
+
+	public GatewayConfig getConfiguration() {
+		return configuration;
+	}
+
 	public ControlLogger getControlLogger() {
 		return controlLogger;
-	}
-
-	public void setControlLogger(ControlLogger controlLogger) {
-		this.controlLogger = controlLogger;
-	}
-
-	public HttpSevice getWebConsoleService() {
-		return webConsoleService;
-	}
-
-	public void setWebConsoleService(HttpSevice webConsoleService) {
-		this.webConsoleService = webConsoleService;
 	}
 
 	public UdpService getDeviceCommandService() {
 		return deviceCommandService;
 	}
 
-	public void setDeviceCommandService(UdpService deviceCommandService) {
-		this.deviceCommandService = deviceCommandService;
-	}
-
 	public DeviceManager getDeviceManager() {
 		return deviceManager;
 	}
 
+	public ProfileManager getProfileManager() {
+		return profileManager;
+	}
+	
+	public HttpSevice getWebConsoleService() {
+		return webConsoleService;
+	}
+	public boolean isHasChanged() {
+		return hasChanged;
+	}
+	public void setConfiguration(GatewayConfig configuration) {
+		this.configuration = configuration;
+	}
+	public void setControlLogger(ControlLogger controlLogger) {
+		this.controlLogger = controlLogger;
+	}
+	public void setDeviceCommandService(UdpService deviceCommandService) {
+		this.deviceCommandService = deviceCommandService;
+	}
 	public void setDeviceManager(DeviceManager deviceManager) {
 		this.deviceManager = deviceManager;
 	}
-
-	public ProfileManager getProfileManager() {
-		return profileManager;
+	
+	public void setHasChanged(boolean hasChanged) {
+		this.hasChanged = hasChanged;
 	}
 
 	public void setProfileManager(ProfileManager profileManager) {
 		this.profileManager = profileManager;
 	}
 
-	protected Logger logger = Logger.getLogger(Gateway.class.getName());
-	
-	protected GatewayConfig configuration;
-	protected HttpSevice webConsoleService;
-	protected UdpService deviceCommandService;
-	protected DeviceManager deviceManager;
-	protected ProfileManager profileManager;
-	protected ControlLogger controlLogger;
-	
-	public GatewayConfig getConfiguration() {
-		return configuration;
+	public void setWebConsoleService(HttpSevice webConsoleService) {
+		this.webConsoleService = webConsoleService;
 	}
-
-	public void setConfiguration(GatewayConfig configuration) {
-		this.configuration = configuration;
-	}
-
+	
+	
 	public void startService() throws Exception {
 		File baseFolder = new File(configuration.getHomeFolder());
 		logger.config("configuration is " + new Gson().toJson(configuration));
@@ -97,10 +112,5 @@ public class Gateway {
 		deviceCommandService.setGateway(this);
 		deviceCommandService.setPort(configuration.getHostPort());
 		deviceCommandService.start();
-	}
-	
-	
-	public void controlLog(String from, String deviceId, String message){
-		controlLogger.log(from, deviceId, message);
 	}
 }

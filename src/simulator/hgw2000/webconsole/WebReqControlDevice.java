@@ -3,6 +3,9 @@ package simulator.hgw2000.webconsole;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+
+import com.sun.media.jfxmedia.logging.Logger;
 
 import fi.iki.elonen.NanoHTTPD.Response;
 import fi.iki.elonen.NanoHTTPD.Response.Status;
@@ -38,6 +41,7 @@ public class WebReqControlDevice extends WebReqShowDevices {
 			device.setStatus(status);
 		}
 		updateStatus(devID, params.get("control_device_profile"), status, params);
+		logger.log(Level.FINE, "Updated device is {0}:{1}", new Object[]{device.getDeviceID(), device.getStatus()});
 	}
 
 	private void updateStatus(String devId, String profile, Map<String, Object> status, Map<String, String> params) {

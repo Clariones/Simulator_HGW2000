@@ -89,6 +89,11 @@ public class DeviceManager {
 		devices.put(id, device);
 		saveDevices();
 	}
+	
+	public void removeDevice(String id) {
+		devices.remove(id);
+		saveDevices();
+	}
 
 	private void saveDevices() {
 		if (!DBFile.exists()){

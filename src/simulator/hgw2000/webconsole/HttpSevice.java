@@ -59,6 +59,7 @@ public class HttpSevice extends NanoHTTPD {
 		requestParser.register(new WebReqCreateDevice());
 		requestParser.register(new WebReqShowImages());
 		requestParser.register(new WebReqControlDevice());
+		requestParser.register(new WebReqUpdateDevice());
 
 		requestParser.sortRequest();
 	}

@@ -3,13 +3,18 @@ package simulator.hgw2000.webconsole;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import simulator.hgw2000.gateway.Gateway;
 
 public abstract class WebRequest {
 	protected String leadUri;
 	protected Gateway gateway;
+	protected Logger logger;
 	
+	public WebRequest(){
+		logger = Logger.getLogger(this.getClass().getSimpleName());
+	}
 	
 	
 	public Gateway getGateway() {

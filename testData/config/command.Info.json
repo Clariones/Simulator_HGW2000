@@ -5,7 +5,7 @@
 			deviceKeys : ["area", "loop"],
 			operation : {
 				"state": "setOnOff_onOff",
-				"dimmer" : "getFrom_dimmer"
+				"dimmer" : "setBy_dimmer"
 			}
 		},
 		"req" : {
@@ -13,7 +13,29 @@
 			deviceKeys : ["area", "loop"],
 			operation : {
 				"state": "getOnOff_onOff",
-				"dimmer" : "setTo_dimmer"
+				"dimmer" : "getAs_dimmer"
+			}
+		}
+	},
+	"ac" : {
+		"cfg": {
+			tokens : ["id", "onOff", "mode", "fan", "dir", "tempSet", "tempCur", "err"],
+			deviceKeys : ["id"],
+			operation : {
+				"runningMode": "setRunningMode_onOff_mode_runningModes",
+				"fanMode" : "setWithMap_fan_fanModes",
+				"temperatureSetting": "setBy_tempSet",
+				"roomTemperature": "getAs_tempCur"
+			}
+		},
+		"req" : {
+			tokens : ["id", "onOff", "mode", "fan", "dir", "tempSet", "tempCur", "err"],
+			deviceKeys : ["id"],
+			operation : {
+				"runningMode": "getRunningMode_onOff_mode_runningModes",
+				"fanMode" : "getWithMap_fan_fanModes",
+				"temperatureSetting": "getAs_tempSet",
+				"roomTemperature": "getAs_tempCur"
 			}
 		}
 	}
