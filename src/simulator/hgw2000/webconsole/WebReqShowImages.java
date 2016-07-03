@@ -19,8 +19,8 @@ import freemarker.log.Logger;
 public class WebReqShowImages extends WebRequest {
 	protected Logger logger = Logger.getLogger(WebReqShowImages.class.getSimpleName());
 	protected static final Map<String, String> fileTypeMap = new HashMap<>();
-	private static final int POS_FILE_PATH_STARTED = 7;
-	private static final int HUGE_IMAGE_SIZE = 2*1024*1024;;
+	protected static final int POS_FILE_PATH_STARTED = 7;
+	protected static final int HUGE_IMAGE_SIZE = 2*1024*1024;;
 	protected static final Map<String, byte[]> imageCache = new HashMap<>();
 	static {
 		fileTypeMap.put(".tif", "image/tiff");
@@ -84,7 +84,7 @@ public class WebReqShowImages extends WebRequest {
 	}
 
 
-	private void cacheImage(String fileName, byte[] image) {
+	protected void cacheImage(String fileName, byte[] image) {
 		if (image == null || image.length > HUGE_IMAGE_SIZE){
 			return;
 		}
@@ -92,7 +92,7 @@ public class WebReqShowImages extends WebRequest {
 	}
 
 
-	private byte[] loadImageFile(String fileName) {
+	protected byte[] loadImageFile(String fileName) {
 		File baseFolder = new File(gateway.getConfiguration().getHomeFolder());
 		File imageFolder = new File(baseFolder, gateway.getConfiguration().getImageFolder());
 		File imageFile = new File(imageFolder, fileName);
@@ -122,7 +122,7 @@ public class WebReqShowImages extends WebRequest {
 	}
 
 
-	private byte[] getCachedImage(String fileName) {
+	protected byte[] getCachedImage(String fileName) {
 		return imageCache.get(fileName);
 	}
 

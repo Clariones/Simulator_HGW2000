@@ -106,6 +106,10 @@ public class UdpService {
 		Hgw2000Command cmd = parseCmd(message.getData());
 		if (cmd == null) {
 			return "$verify,error,105\n";
+		}else if (cmd.getErrorCode() == 131){
+			String cmdStr = new String(message.getData());
+			cmdStr = cmdStr.replace("cfg", "ack").replace("req", "res").replace("0\n", "131\n");
+			return cmdStr;
 		}
 		logger.log(Level.FINE, "Recieve command {0} token, {1} to {2}, params={3}", new Object[] {
 				cmd.getToken() == null ? "has no" : "has", cmd.getCommand(), cmd.getDeviceName(), cmd.getParams() });
@@ -171,7 +175,7 @@ public class UdpService {
 		}
 		switch (oper) {
 		case "getAs":
-			value = String.valueOf(device.getStatus().get(field));
+			value = toStringValue(device.getStatus().get(field));
 			cmd.getParams().put(paramName, value);
 			gateway.controlLog(FROM_WEB, deviceId, "Query " + field + "=" + value);
 			break;
@@ -206,7 +210,7 @@ public class UdpService {
 		}
 	}
 
-	private void opGetWithMap(DeviceInfo device, Hgw2000Command cmd, String extParamName, String field,
+	protected void opGetWithMap(DeviceInfo device, Hgw2000Command cmd, String extParamName, String field,
 			String paramName) {
 		DeviceProfile profile = gateway.getProfileManager().getProfiles().get(device.getProfileID());
 		Map<String, Object> cfg = (Map<String, Object>) profile.getExtParams().get(extParamName);
@@ -215,11 +219,11 @@ public class UdpService {
 			cmd.setErrorCode(131);
 			return;
 		}
-		cmd.getParams().put(paramName, String.valueOf(DriverUtils.getAsInt(cfg.get(value), -1)));
-		System.out.printf("%s in=%s, result %s=%s\n", field, String.valueOf(device.getStatus().get(field)), paramName, cmd.getParams().get(paramName));
+		cmd.getParams().put(paramName, toStringValue(DriverUtils.getAsInt(cfg.get(value), -1)));
+		System.out.printf("%s in=%s, result %s=%s\n", field, toStringValue(device.getStatus().get(field)), paramName, cmd.getParams().get(paramName));
 	}
 
-	private void opSetWithMap(DeviceInfo device, Hgw2000Command cmd, String extParamName, String field,
+	protected void opSetWithMap(DeviceInfo device, Hgw2000Command cmd, String extParamName, String field,
 			String paramName) {
 		DeviceProfile profile = gateway.getProfileManager().getProfiles().get(device.getProfileID());
 		Map<String, Object> cfg = (Map<String, Object>) profile.getExtParams().get(extParamName);
@@ -246,8 +250,8 @@ public class UdpService {
 		if (num < 0) {
 			cmd.setErrorCode(132);
 		} else {
-			cmd.params.put(paramMode, String.valueOf(num % 1000));
-			cmd.params.put(paramOnOff, String.valueOf(num / 1000));
+			cmd.params.put(paramMode, toStringValue(num % 1000));
+			cmd.params.put(paramOnOff, toStringValue(num / 1000));
 			gateway.controlLog(FROM_WEB, device.getDeviceID(), "Query " + field + "=" + num);
 		}
 	}
@@ -349,7 +353,8 @@ public class UdpService {
 		cmd.setCmdInfo(info);
 		List<String> validParams = info.getTokens();
 		if (params.length != validParams.size() + 1) {
-			return null;
+			cmd.setErrorCode(131);
+			return cmd;
 		}
 		for (int i = 1; i < params.length; i++) {
 			paramap.put(validParams.get(i - 1), params[i]);
@@ -369,5 +374,12 @@ public class UdpService {
 		this.service = new ListenerService();
 		service.setListeningPort(port);
 		service.start();
+	}
+	
+	protected String toStringValue(Object obj){
+		if (obj == null){
+			return "0";
+		}
+		return String.valueOf(obj);
 	}
 }

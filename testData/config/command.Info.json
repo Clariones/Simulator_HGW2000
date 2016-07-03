@@ -17,6 +17,24 @@
 			}
 		}
 	},
+	"lig" : {
+		"cfg" : {
+			tokens : ["id", "action", "onOff", "dimmer", "err"],
+			deviceKeys : ["id"],
+			operation : {
+				"state": "setOnOff_onOff",
+				"dimmer" : "setBy_dimmer"
+			}
+		},
+		"req" : {
+			tokens : ["id", "action", "onOff", "dimmer", "err"],
+			deviceKeys : ["id"],
+			operation : {
+				"state": "getOnOff_onOff",
+				"dimmer" : "getAs_dimmer"
+			}
+		}
+	},
 	"ac" : {
 		"cfg": {
 			tokens : ["id", "onOff", "mode", "fan", "dir", "tempSet", "tempCur", "err"],
@@ -34,6 +52,25 @@
 			operation : {
 				"runningMode": "getRunningMode_onOff_mode_runningModes",
 				"fanMode" : "getWithMap_fan_fanModes",
+				"temperatureSetting": "getAs_tempSet",
+				"roomTemperature": "getAs_tempCur"
+			}
+		}
+	},
+	"ufh" : {
+		"cfg": {
+			tokens : ["id", "onOff", "tempSet", "tempCur", "err"],
+			deviceKeys : ["id"],
+			operation : {
+				"state": "setOnOff_onOff",
+				"temperatureSetting": "setBy_tempSet"
+			}
+		},
+		"req" : {
+			tokens : ["id", "onOff", "tempSet", "tempCur", "err"],
+			deviceKeys : ["id"],
+			operation : {
+				"state": "getOnOff_onOff",
 				"temperatureSetting": "getAs_tempSet",
 				"roomTemperature": "getAs_tempCur"
 			}

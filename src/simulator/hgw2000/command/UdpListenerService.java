@@ -69,8 +69,8 @@ public class UdpListenerService {
 
 	protected int listeningPort;
 	protected boolean hasStarted = false;
-	private ExecutorService threadPool;
-	private DatagramSocket sendingSocket;
+	protected ExecutorService threadPool;
+	protected DatagramSocket sendingSocket;
 
 	public void start() throws ListeningServerException {
 		if (wasStarted()) {
@@ -88,18 +88,18 @@ public class UdpListenerService {
 		startLoop();
 	}
 
-	private void createThreadPool() {
+	protected void createThreadPool() {
 		this.threadPool = Executors.newFixedThreadPool(5);
 	}
 
-	private void startLoop() {
+	protected void startLoop() {
 		mainThread = new MainLoopThread();
 		mainThread.setDaemon(isDamon());
 		mainThread.setName("Multicast Listener");
 		mainThread.start();
 	}
 
-	private void createListeningSocket() throws IOException {
+	protected void createListeningSocket() throws IOException {
 		InetAddress group = InetAddress.getByName(getListeningAddress());
 //		MulticastSocket msr = null;
 		DatagramSocket lstSocket = new DatagramSocket(getListeningPort());

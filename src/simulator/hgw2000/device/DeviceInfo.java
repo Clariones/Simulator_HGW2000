@@ -1,12 +1,13 @@
 package simulator.hgw2000.device;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class DeviceInfo {
 	protected String deviceID;
 	protected String profileID;
 	protected Map<String, Object> identity;
-	protected Map<String, Object> status;
+	protected Map<String, Object> status = new HashMap<>();
 	public String getDeviceID() {
 		return deviceID;
 	}

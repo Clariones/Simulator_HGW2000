@@ -15,7 +15,7 @@ import simulator.hgw2000.gateway.Gateway;
 
 public class HttpSevice extends NanoHTTPD {
 	protected Logger logger = Logger.getLogger(HttpSevice.class.getName());
-	private static final String MIME_PLAINTEXT_UTF8 = MIME_PLAINTEXT + "; charset=utf-8";
+	protected static final String MIME_PLAINTEXT_UTF8 = MIME_PLAINTEXT + "; charset=utf-8";
 	protected Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	protected RequestParser requestParser = new RequestParser();
 
@@ -25,7 +25,7 @@ public class HttpSevice extends NanoHTTPD {
 	}
 
 	protected int servicePort;
-	private Gateway gateway;
+	protected Gateway gateway;
 
 	public int getServicePort() {
 		return servicePort;

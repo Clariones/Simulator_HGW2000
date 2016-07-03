@@ -10,8 +10,8 @@ import java.util.Map;
 import simulator.hgw2000.device.DeviceInfo;
 
 public class ControlLogger {
-	private static final int GLOBAL_LOG_SIZE = 100;
-	private static final int DEVICE_LOG_SIZE = 20;
+	protected static final int GLOBAL_LOG_SIZE = 100;
+	protected static final int DEVICE_LOG_SIZE = 20;
 	protected Gateway gateway;
 	protected List<String> globalLog = new LinkedList<>();
 	protected Map<String, List<String>> deviceLog = new HashMap<>();
@@ -38,13 +38,13 @@ public class ControlLogger {
 				timeStr, from, deviceId,  message);
 		addGlobleLog(msg);
 	}
-	private void addGlobleLog(String msg) {
+	protected void addGlobleLog(String msg) {
 		if (globalLog.size() > GLOBAL_LOG_SIZE){
 			globalLog.remove(0);
 		}
 		globalLog.add(msg);
 	}
-	private void addDeviceLog(String deviceId, String msg) {
+	protected void addDeviceLog(String deviceId, String msg) {
 		List<String> list = deviceLog.get(deviceId);
 		if (list == null){
 			list = new LinkedList<>();

@@ -22,7 +22,7 @@ public class ProfileManager {
 
 	protected File DBFile;
 	protected Map<String, DeviceProfile> profiles;
-	private Gateway gateway;
+	protected Gateway gateway;
 	public File getDBFile() {
 		return DBFile;
 	}

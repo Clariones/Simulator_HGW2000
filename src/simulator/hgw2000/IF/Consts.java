@@ -1,7 +1,7 @@
 package simulator.hgw2000.IF;
 
 public class Consts {
-	private Consts(){}
+	protected Consts(){}
 	
 	public static final String T_LIGHT = "Light";
 	

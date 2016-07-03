@@ -13,7 +13,7 @@ import simulator.hgw2000.device.DeviceInfo;
 import simulator.hgw2000.gateway.DeviceManager;
 
 public class WebReqControlDevice extends WebReqShowDevices {
-	private static final int POS_STATUS_VALUE_START = 15;
+	protected static final int POS_STATUS_VALUE_START = 15;
 
 	public WebReqControlDevice(){
 		leadUri = "controlDevice";
@@ -44,7 +44,7 @@ public class WebReqControlDevice extends WebReqShowDevices {
 		logger.log(Level.FINE, "Updated device is {0}:{1}", new Object[]{device.getDeviceID(), device.getStatus()});
 	}
 
-	private void updateStatus(String devId, String profile, Map<String, Object> status, Map<String, String> params) {
+	protected void updateStatus(String devId, String profile, Map<String, Object> status, Map<String, String> params) {
 		for(String param : params.keySet()){
 			if (param.startsWith("control_status_")){
 				String statusName = param.substring(POS_STATUS_VALUE_START);

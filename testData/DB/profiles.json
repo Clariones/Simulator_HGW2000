@@ -39,7 +39,7 @@
 		"id":"int"
 	},
 	spec: {
-		validRunningModes: ["关机","风", "除湿", "制冷","制热","自动"],
+		validRunningModes: ["关机","自动","风","制冷","制热","除湿"],
 		roomTemperatureRange: [16.0, 35.0],
 		temperatureSettingRange:[16.0, 35.0],
 		validFanModes: ["自动","高速","舒适","柔和"],
@@ -62,6 +62,38 @@
 			"舒适": 2,
 			"柔和": 1
 		}
+	}
+},{
+	ID: "Honeywell HBus Light",
+	displayName: "普通有线可调光灯",
+	standard: "Dimmer.Simple",
+	identifiers: {
+		"ipAddress":"string",
+		"area":"int",
+		"loop":"int"
+	},
+	spec: {
+		"canDoQuery":"no",
+		"canDoToggle": "no"
+	},
+	extParams: {
+		deviceName: "hbuslig"
+	}
+},{
+	ID: "Honeywell Floor Heating",
+	displayName: "普通家用地暖",
+	standard: "FloorHeating.Normal",
+	identifiers: {
+		"ipAddress":"string",
+		"id":"int"
+	},
+	spec: {
+		roomTemperatureRange: [16.0, 30.0],
+		temperatureSettingRange:[16.0, 30.0],
+		canQueryStatus: "yes"
+	},
+	extParams : {
+		deviceName: "ufh"
 	}
 }
 ]

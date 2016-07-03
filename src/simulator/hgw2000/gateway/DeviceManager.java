@@ -38,7 +38,7 @@ public class DeviceManager {
 
 	protected Map<String, DeviceInfo> devices;
 	protected File DBFile;
-	private Gateway gateway;
+	protected Gateway gateway;
 
 	public File getDBFile() {
 		return DBFile;
@@ -57,7 +57,7 @@ public class DeviceManager {
 		this.gateway = gateway;
 	}
 
-	private void loadExistingDeviceStatus() {
+	protected void loadExistingDeviceStatus() {
 		if (!DBFile.exists()){
 			devices = new HashMap<>();
 			return;
@@ -95,7 +95,7 @@ public class DeviceManager {
 		saveDevices();
 	}
 
-	private void saveDevices() {
+	protected void saveDevices() {
 		if (!DBFile.exists()){
 			if (!createDBFile()){
 				throw new RuntimeException("Cannot create Device DB File");
@@ -117,7 +117,7 @@ public class DeviceManager {
 		}
 	}
 
-	private boolean createDBFile() {
+	protected boolean createDBFile() {
 		File folder=DBFile.getParentFile();
 		if (!folder.exists()){
 			if (folder.mkdirs()){
@@ -140,7 +140,7 @@ public class DeviceManager {
 	}
 
 	protected static int DEV_ID_SEED = 1;
-	private String generateDeviceId(DeviceInfo device) {
+	protected String generateDeviceId(DeviceInfo device) {
 		int id = DEV_ID_SEED++;
 		String strId = device.getProfileID()+"-"+id;
 		return strId.replace(' ', '_');

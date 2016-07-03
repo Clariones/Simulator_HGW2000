@@ -3,6 +3,8 @@ package simulator.hgw2000.command;
 import java.net.SocketAddress;
 import java.util.Map;
 
+import org.skynet.bgby.driverutils.DriverUtils;
+
 public class Hgw2000Command {
 
 	protected String command;
@@ -50,6 +52,10 @@ public class Hgw2000Command {
 	}
 	public void setErrorCode(int code) {
 		params.put("err", String.valueOf(code));
+	}
+	public int getErrorCode(){
+		String errStr = params.get("err");
+		return DriverUtils.getAsInt(errStr, 0);
 	}
 	
 	
