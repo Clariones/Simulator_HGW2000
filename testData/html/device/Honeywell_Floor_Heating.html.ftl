@@ -1,29 +1,19 @@
-<#assign runningMode=profile.spec.validRunningModes[0]/>
+<#assign state=0/>
 <#assign roomTmpt=16.0/>
 <#assign setTemp=16.0/>
-<#assign fanMode=profile.spec.validFanModes[0]/>
 
 <#if device.status?has_content>
-	<#assign runningMode=device.status.runningMode!runningMode/>
+	<#assign state=device.status.state!runningMode/>
 	<#assign roomTmpt=device.status.roomTemperature!roomTmpt/>
 	<#assign setTemp=device.status.temperatureSetting!setTemp/>
-	<#assign fanMode=device.status.fanMode!fanMode/>
 </#if>
 <form action="/controlDevice" method="get">
 	<input name="control_device_id" type="hidden" value="${deviceId}"/>
 	<input name="control_device_profile" type="hidden" value="${device.profileID}"/>
-	<label>风扇模式</label>
-	<select name="control_status_fanMode" autocomplete="off">
-		<#list profile.spec.validFanModes as mode>
-			<option value="${mode}" <#if mode==fanMode>selected="selected"</#if>>${mode}</option>
-		</#list>
-	</select>
-	<br/>
-	<label>运行模式</label>
-	<select name="control_status_runningMode" autocomplete="off">
-		<#list profile.spec.validRunningModes as mode>
-			<option value="${mode}" <#if mode==runningMode>selected="selected"</#if>>${mode}</option>
-		</#list>
+	<label>运行状态</label>
+	<select name="control_status_state" autocomplete="off">
+		<option value="0" <#if state=="0">selected="selected"</#if>>关</option>
+		<option value="1" <#if state=="1">selected="selected"</#if>>开</option>
 	</select>
 	<br/>
 	<label>室内温度</label> <label id="${deviceId}_room_tmpt_label">${roomTmpt}</label>

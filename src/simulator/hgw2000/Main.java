@@ -20,7 +20,7 @@ public class Main {
 		gateway.startService();
 	}
 
-	private static GatewayConfig loadConfig(String fileName) {
+	protected static GatewayConfig loadConfig(String fileName) {
 		FileReader reader = null;
 		try {
 			reader = new FileReader(fileName);

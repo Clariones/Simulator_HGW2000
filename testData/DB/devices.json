@@ -1,23 +1,58 @@
 {
-  "AC-1": {
-    "deviceID": "AC-1",
-    "profileID": "Honeywell HDW 2000 HVAC",
-    "identity": {
-      "id": 1.0,
-      "ipAddress": "192.168.2.103"
-    },
-    "status": {
-      "runningMode": "制热",
-      "temperatureSetting": "28"
-    }
-  },
   "Light-1": {
     "deviceID": "Light-1",
     "profileID": "Honeywell HBus Light",
     "identity": {
-      "area": 1,
-      "loop": 1,
-      "ipAddress": "192.168.2.103"
+      "area": 1.0,
+      "loop": 1.0,
+      "ipAddress": "192.168.2.102"
+    },
+    "status": {
+      "state": "on",
+      "dimmer": "100"
     }
+  },
+  "AC-1": {
+    "deviceID": "AC-1",
+    "profileID": "Honeywell HDW 2000 HVAC",
+    "identity": {
+      "ipAddress": "192.168.2.102",
+      "id": 101.0
+    },
+    "status": {
+      "roomTemperature": "22",
+      "fanMode": "自动",
+      "runningMode": "风",
+      "temperatureSetting": "33"
+    }
+  },
+  "Light-2": {
+    "deviceID": "Light-2",
+    "profileID": "Honeywell HBus Light",
+    "identity": {
+      "area": 1.0,
+      "loop": 2.0,
+      "ipAddress": "192.168.2.102"
+    },
+    "status": {}
+  },
+  "Light-3": {
+    "deviceID": "Light-3",
+    "profileID": "Honeywell HBus Light",
+    "identity": {
+      "area": 1.0,
+      "loop": 3.0,
+      "ipAddress": "192.168.0.40"
+    },
+    "status": {}
+  },
+  "UFH-1": {
+    "deviceID": "UFH-1",
+    "profileID": "Honeywell Floor Heating",
+    "identity": {
+      "ipAddress": "192.168.2.103",
+      "id": 10
+    },
+    "status": {}
   }
 }

@@ -1,6 +1,7 @@
 <div style="border: 1px solid gray;">
 <form action="/updateDevice" method="get">
 	<input type="hidden" name="device_org_id" value="${deviceId}"/>
+	<input type="hidden" name="identifier_device_profile" value="${device.profileID}"/>
 	<label style="width: 200px;display:inline-block; text-align:right;">设备类型</label> ${device.profileID}
 	<br/>
 	<label style="width: 200px;display:inline-block; text-align:right;">设备名称</label>

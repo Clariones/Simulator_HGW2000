@@ -18,7 +18,7 @@ import simulator.hgw2000.profile.DeviceProfile;
 
 public class WebReqCreateDevice extends WebReqShowConsole {
 
-	private static final int PREFIX_SIZE_OF_IDENTIFIER = 11;
+	protected static final int PREFIX_SIZE_OF_IDENTIFIER = 11;
 
 	public WebReqCreateDevice(){
 		super();
@@ -55,12 +55,15 @@ public class WebReqCreateDevice extends WebReqShowConsole {
 		return device;
 	}
 
-	private Map<String, Object> getIdentity(Map<String, String> inParams) {
+	protected Map<String, Object> getIdentity(Map<String, String> inParams) {
 		Map<String, Object> result = new HashMap<>();
 		DeviceProfile profile = gateway.getProfileManager().getProfiles().get(inParams.get("identifier_device_profile"));
 		assert(profile != null);
 		Map<String, String> iders = profile.getIdentifiers();
 		for(String key : inParams.keySet()){
+			if (!key.startsWith("identifier_")){
+				continue;
+			}
 			String value = inParams.get(key);
 			String idName = key.substring(PREFIX_SIZE_OF_IDENTIFIER);
 			String idType = iders.get(idName);

@@ -38,5 +38,24 @@
 				"roomTemperature": "getAs_tempCur"
 			}
 		}
+	},
+	"ufh" : {
+		"cfg": {
+			tokens : ["id", "onOff", "tempSet", "tempCur", "err"],
+			deviceKeys : ["id"],
+			operation : {
+				"state": "setBy_onOff",
+				"temperatureSetting": "setBy_tempSet"
+			}
+		},
+		"req" : {
+			tokens : ["id", "onOff", "tempSet", "tempCur", "err"],
+			deviceKeys : ["id"],
+			operation : {
+				"state": "getAs_onOff",
+				"temperatureSetting": "getAs_tempSet",
+				"roomTemperature": "getAs_tempCur"
+			}
+		}
 	}
 }

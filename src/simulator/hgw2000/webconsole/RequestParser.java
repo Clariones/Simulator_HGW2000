@@ -55,7 +55,7 @@ public class RequestParser {
 		return null;
 	}
 
-	private WebRequest newWellcomRequest() {
+	protected WebRequest newWellcomRequest() {
 		WebReqWelcome webReq = new WebReqWelcome();
 		webReq.setGateway(gateway);
 		webReq.setHandler(new WebRequestHandler());

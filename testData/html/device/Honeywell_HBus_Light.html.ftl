@@ -13,7 +13,7 @@
 	<#assign img="/images/unknown.png"/>
 </#if>
 
-	<image id="${imgId}" src="${img}"/>
+	<image id="${imgId}" src="${img}" width="96px"/>
 	<br/>
 	<form action="/controlDevice" method="get" id="${deviceId}_control_form">
 		<input name="control_device_id" type="hidden" value="${deviceId}"/>
