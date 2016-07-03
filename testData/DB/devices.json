@@ -9,7 +9,7 @@
     },
     "status": {
       "state": "on",
-      "dimmer": "100"
+      "dimmer": "48"
     }
   },
   "AC-1": {
@@ -26,15 +26,6 @@
       "temperatureSetting": "33"
     }
   },
-  "Light-2": {
-    "deviceID": "Light-2",
-    "profileID": "Honeywell Switch Light",
-    "identity": {
-      "ipAddress": "192.168.2.103",
-      "id": 2
-    },
-    "status": {}
-  },
   "Light-3": {
     "deviceID": "Light-3",
     "profileID": "Honeywell HBus Light",
@@ -43,7 +34,10 @@
       "loop": 3.0,
       "ipAddress": "192.168.0.40"
     },
-    "status": {}
+    "status": {
+      "state": "on",
+      "dimmer": "65"
+    }
   },
   "UFH-1": {
     "deviceID": "UFH-1",
@@ -63,7 +57,19 @@
     "profileID": "Honeywell Switch Light",
     "identity": {
       "ipAddress": "192.168.2.103",
-      "id": 4
+      "id": 4.0
+    },
+    "status": {
+      "state": "off",
+      "dimmer": "0"
+    }
+  },
+  "Light-2": {
+    "deviceID": "Light-2",
+    "profileID": "Honeywell Switch Light",
+    "identity": {
+      "ipAddress": "192.168.2.103",
+      "id": 2
     },
     "status": {}
   }
