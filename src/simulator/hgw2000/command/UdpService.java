@@ -90,10 +90,13 @@ public class UdpService {
 
 		@Override
 		public UdpData serve(UdpData message) {
+			System.out.println("RECV CMD: " + new String(message.getData()));
 			String result = handleCommand(message);
 			if (result == null || result.isEmpty()) {
+				System.out.println("SEND RES: null");
 				return null;
 			}
+			System.out.println("SEND RES: " + result);
 			UdpData reData = new UdpData();
 			reData.setSocketAddress(message.getSocketAddress());
 			reData.setData(result.getBytes());
