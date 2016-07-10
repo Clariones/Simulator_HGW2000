@@ -75,5 +75,14 @@
 				"roomTemperature": "getAs_tempCur"
 			}
 		}
+	},
+	"sensor" : {
+		"req" : {
+			tokens : ["id","level","err"],
+			deviceKeys : ["id"],
+			operation : {
+				"value": "getAs_level"
+			}
+		}
 	}
 }

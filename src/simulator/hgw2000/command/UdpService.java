@@ -90,8 +90,14 @@ public class UdpService {
 
 		@Override
 		public UdpData serve(UdpData message) {
-			System.out.println("RECV CMD: " + new String(message.getData()));
-			String result = handleCommand(message);
+			String cmd = new String(message.getData());
+			System.out.println("RECV CMD: " + cmd);
+			String result = null;
+//			if (cmd.startsWith("$example query")){
+//				result = "$exaple result 123.4";
+//			}else{
+				result = handleCommand(message);
+//			}
 			if (result == null || result.isEmpty()) {
 				System.out.println("SEND RES: null");
 				return null;
@@ -302,6 +308,9 @@ public class UdpService {
 	}
 
 	protected boolean verifyToken(Hgw2000Command cmd) {
+		if (cmd.getToken().equals("token-special")){
+			return true;
+		}
 		InetSocketAddress addr = (InetSocketAddress) cmd.getFromAddress();
 		String token = verifiedTokens.get(addr.getAddress());
 		logger.fine("cuurent token is " + token);
@@ -315,6 +324,9 @@ public class UdpService {
 			return null;
 		}
 		String strCmd = new String(data);
+		if(strCmd.startsWith("$example query")){
+			strCmd = makeExampleCmd(strCmd);
+		}
 		Matcher m = PTN_SPLITER_1.matcher(strCmd);
 		if (m == null || !m.find()) {
 			logger.warning("Cannot handle command: " + strCmd);
@@ -363,6 +375,12 @@ public class UdpService {
 			paramap.put(validParams.get(i - 1), params[i]);
 		}
 		return cmd;
+	}
+
+	private String makeExampleCmd(String strCmd) {
+		String[] inputs = strCmd.split(" ");
+		String result = String.format("%s$req,sensor,%s,0,0\n", "token-special", inputs[2]);
+		return result;
 	}
 
 	public void start() throws ListeningServerException, Exception {

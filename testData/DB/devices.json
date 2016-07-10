@@ -69,7 +69,16 @@
     "profileID": "Honeywell Switch Light",
     "identity": {
       "ipAddress": "192.168.2.103",
-      "id": 2
+      "id": 2.0
+    },
+    "status": {}
+  },
+  "传感器例子": {
+    "deviceID": "传感器例子",
+    "profileID": "Example PM2.5",
+    "identity": {
+      "ipAddress": "192.168.2.103",
+      "id": 200
     },
     "status": {}
   }

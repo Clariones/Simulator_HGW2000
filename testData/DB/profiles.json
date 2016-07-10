@@ -95,5 +95,20 @@
 	extParams : {
 		deviceName: "ufh"
 	}
+},{
+	ID: "Example PM2.5",
+	displayName: "传感器例子",
+	standard: "Sensor.Simple",
+	identifiers: {
+		"ipAddress":"string",
+		"id":"int"
+	},
+	spec: {
+		"canDoQuery":"no",
+		"canDoToggle": "no"
+	},
+	extParams: {
+		deviceName: "sensor"
+	}
 }
 ]
